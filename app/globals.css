@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #F8F5F0;
+  --color-beige: #E8DED1;
+  --color-sage: #C8D5C0;
+  --color-rose: #D9B8B0;
+  --color-gold: #C8A46A;
+  --color-charcoal: #3A3630;
+  --color-ink: #1A1714;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-rose);
+  color: var(--color-ink);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-beige);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rose);
+}
+
+/* Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    background: rgba(248, 245, 240, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(232, 222, 209, 0.5);
+  }
+
+  .glass-dark {
+    background: rgba(26, 23, 20, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(232, 222, 209, 0.1);
+  }
+
+  .luxury-border {
+    border: 1px solid var(--color-beige);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--color-gold), #E8C87A, var(--color-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-luxury {
+    background: linear-gradient(135deg, #F8F5F0 0%, #EDE8DF 50%, #F8F5F0 100%);
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Components */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-charcoal text-cream text-sm font-medium tracking-widest uppercase transition-all duration-300 hover:bg-ink hover:shadow-luxury-lg active:scale-95;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3 border border-charcoal text-charcoal text-sm font-medium tracking-widest uppercase transition-all duration-300 hover:bg-charcoal hover:text-cream active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-2 text-charcoal text-sm font-medium tracking-wider uppercase transition-all duration-300 hover:text-gold;
+  }
+
+  .input-luxury {
+    @apply w-full bg-transparent border-b border-beige px-0 py-3 text-charcoal placeholder-beige-300 focus:outline-none focus:border-charcoal transition-colors duration-300 font-sans text-sm;
+  }
+
+  .section-label {
+    @apply text-xs font-medium tracking-ultra-wide uppercase text-gold;
+  }
+
+  .product-card {
+    @apply relative bg-cream overflow-hidden cursor-pointer;
+  }
+
+  .nav-link {
+    @apply text-xs font-medium tracking-widest uppercase text-charcoal transition-colors duration-300 hover:text-gold;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+}
+
+/* Intro loader */
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Particle */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(200, 164, 106, 0.6), transparent);
+  animation: particleDrift var(--duration, 4s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* 3D Perfume Bottle */
+.bottle-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+
+/* Zoom overlay */
+.zoom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+/* Admin */
+.admin-sidebar {
+  @apply fixed left-0 top-0 h-full w-64 bg-ink text-cream z-40;
+}
+
+/* Review stars */
+.star-filled { color: var(--color-gold); }
+.star-empty { color: var(--color-beige); }
