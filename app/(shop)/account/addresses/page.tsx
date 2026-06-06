@@ -99,7 +99,7 @@ export default function AddressesPage() {
                   ].map((f) => (
                     <div key={f.key} className={f.col || ""}>
                       <label className="text-[10px] tracking-widest uppercase text-charcoal/50 block mb-2">{f.label}</label>
-                      <input value={(form as Record<string, string>)[f.key]} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} className="input-luxury" />
+                      <input value={(form as unknown as Record<string, string>)[f.key]} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} className="input-luxury" />
                     </div>
                   ))}
                 </div>
